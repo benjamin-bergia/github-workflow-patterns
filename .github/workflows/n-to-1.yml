@@ -1,0 +1,23 @@
+name: 'From N jobs to 1 job'
+
+on: [push, pull_request]
+
+jobs:
+  job-a:
+    name: Job A
+    runs-on: ubuntu-latest
+    steps:
+      - run: true
+
+  job-b:
+    name: Job B
+    runs-on: ubuntu-latest
+    steps:
+      - run: true
+
+  job-c:
+    name: Job C
+    runs-on: ubuntu-latest
+    needs: [ job-a, job-b ]
+    steps:
+      - run: true
