@@ -1,6 +1,10 @@
 name: 'Dynamic matrices'
 
-on: [push, pull_request]
+on:
+  push:
+    paths: [ '.github/workflows/dynamic-matrices.yml' ]
+  pull_request:
+    paths: [ '.github/workflows/dynamic-matrices.yml' ]
 
 jobs:
   generate-matrix:

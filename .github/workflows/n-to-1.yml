@@ -1,6 +1,10 @@
 name: 'From N jobs to 1 job'
 
-on: [push, pull_request]
+on:
+  push:
+    paths: [ '.github/workflows/n-to-1.yml' ]
+  pull_request:
+    paths: [ '.github/workflows/n-to-1.yml' ]
 
 jobs:
   job-a:

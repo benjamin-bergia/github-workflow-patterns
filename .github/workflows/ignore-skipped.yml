@@ -1,0 +1,66 @@
+name: 'Ignore skipped'
+
+on:
+  push:
+    paths: [ '.github/workflows/ignore-skipped.yml' ]
+  pull_request:
+    paths: [ '.github/workflows/ignore-skipped.yml' ]
+
+jobs:
+  job-a:
+    name: Job A
+    runs-on: ubuntu-latest
+    steps:
+      - run: true
+
+  job-b:
+    name: Job B
+    runs-on: ubuntu-latest
+    if: false
+    steps:
+      - run: true
+
+  job-c:
+    name: Job C
+    runs-on: ubuntu-latest
+    if: false
+    steps:
+      - run: true
+
+  job-d:
+    name: Job D
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 1
+
+  job-ab:
+    name: Job AB
+    runs-on: ubuntu-latest
+    needs: [ job-a, job-b ]
+    if: ${{ always() && contains(needs.*.result, 'success') && !(contains(needs.*.result, 'failure')) }}
+    steps:
+      - run: true
+
+  job-bc:
+    name: Job BC
+    runs-on: ubuntu-latest
+    needs: [ job-b, job-c ]
+    if: ${{ always() && contains(needs.*.result, 'success') && !(contains(needs.*.result, 'failure')) }}
+    steps:
+      - run: true
+
+  job-cd:
+    name: Job CD
+    runs-on: ubuntu-latest
+    needs: [ job-c, job-d ]
+    if: ${{ always() && contains(needs.*.result, 'success') && !(contains(needs.*.result, 'failure')) }}
+    steps:
+      - run: true
+
+  job-ad:
+    name: Job AD
+    runs-on: ubuntu-latest
+    needs: [ job-a, job-d ]
+    if: ${{ always() && contains(needs.*.result, 'success') && !(contains(needs.*.result, 'failure')) }}
+    steps:
+      - run: true
