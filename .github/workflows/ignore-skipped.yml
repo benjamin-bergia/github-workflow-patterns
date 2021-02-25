@@ -3,7 +3,7 @@ name: 'Ignore skipped'
 on:
   push:
     paths: [ '.github/workflows/ignore-skipped.yml' ]
-  pull_request:
+  pull_request_target:
     paths: [ '.github/workflows/ignore-skipped.yml' ]
 
 jobs:

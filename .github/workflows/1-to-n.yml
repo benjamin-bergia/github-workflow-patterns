@@ -3,7 +3,7 @@ name: 'From 1 job to N jobs'
 on:
   push:
     paths: [ '.github/workflows/1-to-n.yml' ]
-  pull_request:
+  pull_request_target:
     paths: [ '.github/workflows/1-to-n.yml' ]
 
 jobs:
