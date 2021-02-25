@@ -1,0 +1,36 @@
+name: 'Aggregation'
+
+on:
+  push:
+    paths: [ '.github/workflows/aggregation.yml' ]
+  pull_request_target:
+    paths: [ '.github/workflows/aggregation.yml' ]
+
+env:
+  ARTIFACT: artifact.bin
+
+jobs:
+  job-a:
+    name: Job A
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        items: [ 'A', 'B', 'C' ]
+    steps:
+      - run: echo "${{ matrix.items }}" >$ARTIFACT
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.workflow }}-${{ github.sha }}
+          path: ${{ env.ARTIFACT }}
+
+  job-b:
+    name: Job B
+    runs-on: ubuntu-latest
+    needs: job-a
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          path: artifacts
+
+      - run: cat artifacts/*
