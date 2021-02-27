@@ -52,5 +52,4 @@ When creating matrices of jobs, multiple instances of the same job with differen
 
 [Example](.github/workflows/dynamic-matrices.yml)
 
-![Dynamic matrices](images/dynamic-matrices-1.png)
-![Generated jobs](images/dynamic-matrices-2.png)
+![Dynamic matrices](images/dynamic-matrices.png)
