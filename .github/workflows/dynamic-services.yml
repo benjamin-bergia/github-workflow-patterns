@@ -1,0 +1,25 @@
+name: 'Dynamic services'
+
+on:
+  push:
+    paths: [ '.github/workflows/dynamic-services.yml' ]
+  pull_request_target:
+    paths: [ '.github/workflows/dynamic-services.yml' ]
+
+jobs:
+  job-a:
+    name: Job A
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        databases:
+          - image: 'postgres:latest'
+            env:
+              POSTGRES_PASSWORD: 'test'
+          - image: 'mysql:latest'
+            env:
+              MYSQL_ROOT_PASSWORD: 'test'
+    services:
+      database: ${{ matrix.databases }}
+    steps:
+      - run: true

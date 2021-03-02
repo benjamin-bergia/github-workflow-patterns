@@ -53,3 +53,17 @@ When creating matrices of jobs, multiple instances of the same job with differen
 [Example](.github/workflows/dynamic-matrices.yml)
 
 ![Dynamic matrices](images/dynamic-matrices.png)
+
+
+
+### Objects as matrix input
+It is possible to pass more than simple arrays of strings or numbers to matrices. Whole objects can be passed. This might be used when additional or optional fields are needed for some items but are too numerous to use includes.
+
+[Example](.github/workflows/matrix-objects.yml)
+
+
+
+### Dynamic services
+As showned in the previous pattern, whole objects can be passed as input to a matrix. It is then possible to use these objects as service definitions. This is usefull when testing application across different databases for example.
+
+[Example](.github/workflows/dynamic-services.yml)

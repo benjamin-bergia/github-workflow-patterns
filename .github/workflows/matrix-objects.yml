@@ -1,0 +1,22 @@
+name: 'Matrix objects'
+
+on:
+  push:
+    paths: [ '.github/workflows/matrix-objects.yml' ]
+  pull_request_target:
+    paths: [ '.github/workflows/matrix-objects.yml' ]
+
+jobs:
+  job-a:
+    name: Job A
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        items:
+          - name: A
+            value: 1
+          - name: B
+            value: 2
+    steps:
+      - run: echo "The value of ${{ matrix.items.name }} is ${{ matrix.items.value }}"
+
