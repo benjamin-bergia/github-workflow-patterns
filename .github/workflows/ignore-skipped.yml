@@ -1,4 +1,4 @@
-name: 'Ignore skipped'
+name: 'Ignore skipped - run'
 
 on:
   push:
