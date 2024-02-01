@@ -1,0 +1,13 @@
+name: 'LabelTest'
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+    branches:
+      - 'master'
+
+jobs:
+  job-a:
+    name: Job A
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo hi
